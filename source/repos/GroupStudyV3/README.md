@@ -1,3 +1,18 @@
+---------Project Description---------
+
+This web app was built to help students organize and collaborate on coursework.
+It lets students register, track assignments by course, and create or join study groups with others taking similar classes.
+
+Key features:
+
+Student Profiles: Add yourself as a student and update your information any time.
+Assignment Tracker: Log your assignments, set the type (Homework, Quiz, Test, Project), and keep track of your academic workload.
+Smart Group Formation: Search for students by course, assignment type, gender, or class standing to find study partners who match your criteria.
+Group Dashboard: Create new groups or join existing ones. All group members can see each other’s assignments for the shared course, making it easier to collaborate and stay organized.
+Edit Members & Info: Update your group’s members, remove yourself from groups, or edit your profile information whenever you want.
+This project was made for learning and demo purposes
+
+
 ---------Setting Up Project Environment---------
 
 Needed: Docker, Visual Studio, optionally SQL Server Management Studio (SSMS) to modify database.
