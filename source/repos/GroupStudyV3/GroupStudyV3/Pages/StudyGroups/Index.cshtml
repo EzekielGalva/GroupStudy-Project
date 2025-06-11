@@ -1,0 +1,47 @@
+﻿@page
+@model GroupStudyV3.Pages.StudyGroups.IndexModel
+
+@{
+    ViewData["Title"] = "My Study Groups";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+
+@if (!Model.MyGroups.Any())
+{
+    <p><em>You aren’t in any groups yet.</em></p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Group Name</th>
+                <th>Course</th>
+                <th>Created By</th>
+                <th>Created On</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var g in Model.MyGroups)
+            {
+                <tr>
+                    <td>@g.GroupName</td>
+                    <td>@g.Assignment.Title</td>
+                    <td>@g.CreatedByNavigation.Email</td>
+                    <td>@g.CreatedOn:yyyy‑MM‑dd</td>
+                    <td>
+                        <a asp-page="./Details" asp-route-id="@g.StudyGroupId">Details</a> |
+                        
+                        
+                        <a asp-page="./Edit" asp-route-id="@g.StudyGroupId">Edit Members</a> |
+                        <a asp-page="./Delete" asp-route-id="@g.StudyGroupId" class="text-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

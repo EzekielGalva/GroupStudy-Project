@@ -1,0 +1,44 @@
+﻿@page
+@model GroupStudyV3.Pages.GroupByAssignment.GroupByAssignmentModel
+@{
+	ViewData["Title"] = "Group By Assignment";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form method="get" class="row g-2 mb-4">
+    <div class="col-auto">
+        <input name="Standing" value="@Model.Standing" class="form-control" placeholder="Class Standing" />
+    </div>
+    <div class="col-auto">
+        <input name="Gender" value="@Model.Gender" class="form-control" placeholder="Gender" />
+    </div>
+    <div class="col-auto">
+        <input name="MinAge" value="@Model.MinAge" type="number" class="form-control" placeholder="Min Age" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </div>
+</form>
+
+@foreach (var a in Model.Assignments)
+{
+    <section class="mb-5">
+        <h2>@a.Title <small>[@a.Type on @a.DueDate:yyyy-MM-dd]</small></h2>
+        <p>@a.Description</p>
+        <ul>
+           @foreach (var sa in a.StudentAssignments)
+            {
+                <li>
+                    @sa.Student.FirstName @sa.Student.LastName
+                    <small>(@sa.Student.ClassStanding, @sa.Student.Gender, @sa.Student.Age)</small>
+                </li>
+            }
+        </ul>
+        <a asp-page="/StudyGroups/Create"
+           asp-route-assignmentId="@a.AssignmentId"
+           class="btn btn-success">
+            Form New Study Group
+        </a>
+    </section>
+}
+ 

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupStudyV3", "GroupStudyV3\GroupStudyV3.csproj", "{F7ED4854-305B-43DC-9CE5-9BA2E49D5DF7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setting_Up_Files", "Setting_Up_Files", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		database_population_script.sql = database_population_script.sql
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7ED4854-305B-43DC-9CE5-9BA2E49D5DF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7ED4854-305B-43DC-9CE5-9BA2E49D5DF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7ED4854-305B-43DC-9CE5-9BA2E49D5DF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7ED4854-305B-43DC-9CE5-9BA2E49D5DF7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FAA9FEB-3262-4C07-A96D-D039E624E03B}
+	EndGlobalSection
+EndGlobal

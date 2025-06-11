@@ -1,0 +1,35 @@
+﻿@page
+@model GroupStudyV3.Pages.StudyGroups.DetailsModel
+
+<h1>Group: @Model.Group!.GroupName</h1>
+
+<p>
+    <strong>Course:</strong> @Model.Group.Assignment.Title<br />
+    <strong>Created by:</strong> @Model.Group.CreatedByNavigation.Email<br />
+    <strong>On:</strong> @Model.Group.CreatedOn:yyyy‑MM‑dd
+</p>
+
+<h2>Members</h2>
+@if (!Model.Group.StudyGroupMembers.Any())
+{
+    <p><em>No members yet.</em></p>
+}
+<ul class="list-group mb-4">
+    @foreach (var m in Model.Group.StudyGroupMembers)
+    {
+        <li class="list-group-item">
+            <strong>@m.Student.FirstName @m.Student.LastName</strong>
+            <br />
+            <small>Standing: @m.Student.ClassStanding, Gender: @m.Student.Gender</small>
+            <ul>
+                @foreach (var sa in m.Student.StudentAssignments.Select(x => x.Assignment))
+                {
+                    <li>@sa.Title (@sa.Type) due @sa.DueDate:yyyy‑MM‑dd</li>
+                }
+            </ul>
+        </li>
+    }
+</ul>
+
+<a asp-page="./Edit" asp-route-id="@Model.Group.StudyGroupId" class="btn btn-primary">Edit Members</a>
+<a asp-page="./Index" class="btn btn-secondary">Back to list</a>

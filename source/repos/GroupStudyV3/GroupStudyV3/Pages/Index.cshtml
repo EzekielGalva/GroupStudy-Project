@@ -1,0 +1,41 @@
+﻿@page
+@model GroupStudyV3.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="d-flex flex-column justify-content-start align-items-center vh-100 pt-5">
+    <h1 class="mb-4">Welcome to GroupStudy!</h1>
+
+    @if (Model.CurrentStudent != null)
+    {
+        <h2>Hello, @Model.CurrentStudent.FirstName!</h2>
+        <p class="mb-4">What would you like to do today?</p>
+        <div class="btn-group mb-5">
+            <a asp-page="/Assignments/Create" class="btn btn-primary">Add Assignment</a>
+            <a asp-page="/FindGroups/Index" class="btn btn-secondary">Find & Form Groups</a>
+        </div>
+        
+        
+        
+        <div class="btn-group mb-3">
+            <a asp-page="/Students/Edit" asp-route-id="@Model.CurrentStudent.StudentId" class="btn btn-outline-info">
+                Edit My Info
+            </a>
+        </div>
+
+    }
+
+    <form method="post" asp-page="/SetStudent" class="w-50 mb-3">
+        <select name="StudentId"
+                asp-items="Model.StudentList"
+                class="form-select mb-2"
+                asp-optionLabel="-- Select You (Student) --">
+        </select>
+        <button type="submit" class="btn btn-outline-primary w-100">Select Student</button>
+    </form>
+
+    <a asp-page="/Students/Create" class="btn btn-success">Create New Student</a>
+</div>
+

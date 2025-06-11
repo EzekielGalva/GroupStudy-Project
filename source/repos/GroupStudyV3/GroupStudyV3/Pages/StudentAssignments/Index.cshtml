@@ -1,0 +1,48 @@
+@page
+@model GroupStudyV3.Pages.StudentAssignments.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentAssignment[0].CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentAssignment[0].Assignment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentAssignment[0].Student)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.StudentAssignment) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assignment.AssignmentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.StudentId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.StudentAssignmentId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.StudentAssignmentId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.StudentAssignmentId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

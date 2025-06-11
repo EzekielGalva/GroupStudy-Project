@@ -1,0 +1,122 @@
+﻿@page
+@model GroupStudyV3.Pages.FindGroups.IndexModel
+
+@{
+    ViewData["Title"] = "Find & Form Study Group";
+}
+
+@if (Model.CurrentStudent != null)
+{
+    <div class="alert alert-info">
+        You are: <strong>@Model.CurrentStudent.Email</strong>
+    </div>
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <div>@error.ErrorMessage</div>
+        }
+    </div>
+}
+
+<!-- SEARCH FORM -->
+<form method="post" class="mb-4">
+    <div class="row g-2">
+        <div class="col-md-3">
+            <label asp-for="CourseId">Course</label>
+            <select asp-for="CourseId"
+                    asp-items="Model.Courses"
+                    class="form-control"
+                    asp-optionLabel="-- all courses --">
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label asp-for="TypeFilter">Type</label>
+            <select asp-for="TypeFilter"
+                    asp-items="Model.AssignmentTypes"
+                    class="form-control"
+                    asp-optionLabel="-- all types --">
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label asp-for="GenderFilter">Gender</label>
+            <select asp-for="GenderFilter"
+                    asp-items="Model.GenderList"
+                    class="form-control"
+                    asp-optionLabel="-- all genders --">
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label asp-for="StandingFilter">Standing</label>
+            <select asp-for="StandingFilter"
+                    asp-items="Model.StandingList"
+                    class="form-control"
+                    asp-optionLabel="-- all standings --">
+            </select>
+        </div>
+        <div class="col-md-2 align-self-end">
+            <button type="submit"
+                    name="SubmitAction"
+                    value="Search"
+                    class="btn btn-primary w-100">
+                Search
+            </button>
+        </div>
+    </div>
+</form>
+
+@if (Model.SearchResults?.Any() == true)
+{
+    <h2>Results (@Model.SearchResults.Count)</h2>
+
+    <!-- CREATE / ADD‐TO‐EXISTING FORM -->
+    <form method="post" class="mb-5">
+        <div class="mb-2">
+            <label asp-for="GroupName">New group name</label>
+            <input asp-for="GroupName" class="form-control" />
+        </div>
+        <div class="mb-2">
+            <label asp-for="ExistingGroupId">Or add to existing</label>
+            <select asp-for="ExistingGroupId"
+                    asp-items="Model.ExistingGroups"
+                    class="form-control"
+                    asp-optionLabel="-- none --">
+            </select>
+        </div>
+
+        <div class="list-group mb-3">
+            @foreach (var s in Model.SearchResults)
+            {
+                <label class="list-group-item">
+                    <input type="checkbox"
+                           name="SelectedStudentIds"
+                           value="@s.StudentId" />
+                    @s.FirstName @s.LastName (@s.ClassStanding, @s.Gender)
+                </label>
+            }
+        </div>
+
+        <button type="submit"
+                name="SubmitAction"
+                value="CreateGroup"
+                class="btn btn-success me-2">
+            Create New Group
+        </button>
+        <button type="submit"
+                name="SubmitAction"
+                value="AddToExisting"
+                class="btn btn-secondary">
+            Add to Existing
+        </button>
+    </form>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
